@@ -1,4 +1,6 @@
 <?php
+include('../static/php/connection.php');
+
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
@@ -40,7 +42,52 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
             </div>
             <div class="card-body">
 
-                
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Usuário</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = "SELECT * FROM users ORDER BY lvl ASC";
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+
+                            while ($row = $result->fetch_assoc()) {
+
+                                echo "<tr>";
+                                echo "<th scope='row'>{$row['id']}</th>";
+                                echo "<td>{$row['nome']}</td>";
+
+                                // Tipo de usuário
+                                if ($row['lvl'] == 1) {
+                                    echo "<td><span class='badge bg-danger'>Admin</span></td>";
+                                } else {
+                                    echo "<td><span class='badge bg-secondary'>Usuário</span></td>";
+                                }
+
+                                // Ações
+                                echo "<td>
+                                    <button class='btn btn-sm btn-danger'
+                                            onclick='excluirUser({$row['id']})'>
+                                        Excluir
+                                    </button>
+                                </td>";
+
+                                echo "</tr>";
+                            }
+
+                        } else {
+                            echo "<tr><td colspan='4'>Nenhum usuário encontrado</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
 
             </div>
             <div class="card-footer border-0">
