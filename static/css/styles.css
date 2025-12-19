@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+body {
+    background-color: #e5e5f7;
+    opacity: 0.8;
+    background-image:  linear-gradient(#545cf754 1px, transparent 1px), linear-gradient(to right, #545cf754 1px, #e5e5f7 1px);
+    background-size: 40px 40px;
+}
+
+.card {
+    width: 700px;
+    height: 85vh;
+    text-align: center;
+    position: relative;
+}
+.card-header h2 {
+    font-family: Lora;
+    font-style: italic;
+    font-size: 50px;
+    font-weight: 600;
+    margin: 0px;
+}
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-body form {
+    width: 100%;
+}
+.navbar {
+    border-top: 1px solid #7c7c7c;
+}
+.nav-item:hover {
+    background-color: #ececec;
+}
+.card-footer {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.card-footer span {
+    margin-bottom: 0px;
+    padding: 4px 8px;
+    display: inline-block;
+}
+.card-header p {
+    border-top: 1px solid #7c7c7c;
+}
+.row {
+    margin: 15px 0px 15px 0px;
+}
+.col-10 input, #userLevel{
+    font-size: 1.2rem;
+    height: 50px;
+}
+#login-button {
+    width: 100%;
+    font-size: 1.3rem;
+}
+
+#login-button, #showPassword {
+    color: #20C997;
+    border: 1px solid #20C997;
+}
+#login-button:hover, #showPassword:hover {
+    color: #fff;
+    border-color: #20C997;
+    background-color: #20C997;
+}
