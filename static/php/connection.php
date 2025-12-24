@@ -1,13 +1,11 @@
-<?php 
-$server = "localhost";
+<?php
+$host = "localhost";
 $user = "root";
-$password = "";
-$dbname = "aegis";
+$pass = "";
+$db   = "aegis";
 
-//criar conexao
-$conn = mysqli_connect($server, $user, $password, $dbname);
-if ($conn->connect_errno) {
-    printf("Connect failed: %s\n", $conn->connect_error);
-    exit();
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Erro de conexão");
 }
-?>

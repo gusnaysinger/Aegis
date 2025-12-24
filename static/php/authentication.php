@@ -25,17 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($user['lvl'] == 1) {
                 header('Location: ../../templates/admin.php');
-            } else {
-                header('Location: ../../templates/user.php');
+            } else if ($user['lvl'] == 0) {
+                header('Location: /Aegis/templates/user.php');
             }
             exit();
 
         } else {
-            echo "<script>alert('Senha incorreta!'); window.location.href='../../templates/index.html';</script>";
+            echo "<script>alert('Senha incorreta!'); window.location.href='/Aegis/templates/index.html';</script>";
         }
-
+        
     } else {
-        echo "<script>alert('Usuário não encontrado!'); window.location.href='../../templates/index.html';</script>";
+        echo "<script>alert('Usuário não encontrado!'); window.location.href='/Aegis/templates/index.html';</script>";
     }
 }
 ?>

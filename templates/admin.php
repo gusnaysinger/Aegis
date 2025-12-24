@@ -4,7 +4,7 @@ include('../static/php/connection.php');
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
-    header('Location: ../../templates/index.html');
+    header('Location: /Aegis/templates/index.html');
     exit();
 }
 ?>
@@ -72,10 +72,14 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
                                 }
 
                                 // Ações
+                                // <button class='btn btn-sm btn-warning'
+                                // onclick='getUser({$row['id']})'>
+                                // <i class='fas fa-pen'></i>
+                                // </button>
                                 echo "<td>
                                     <button class='btn btn-sm btn-danger'
-                                            onclick='excluirUser({$row['id']})'>
-                                        Excluir
+                                            onclick='deletUser({$row['id']})'>
+                                        <i class='fas fa-trash-can'></i>
                                     </button>
                                 </td>";
 
@@ -97,6 +101,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
     </div>
 
 
+    <script src="https://kit.fontawesome.com/0635eb955e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="../static/js/script.js"></script>
 </body>

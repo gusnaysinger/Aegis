@@ -1,8 +1,10 @@
 <?php
+include('../static/php/connection.php');
+
 session_start();
 
-if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
-    header('Location: ../../templates/index.html');
+if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
+    header('Location: /Aegis/templates/index.html');
     exit();
 }
 ?>
@@ -28,10 +30,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
                         <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav w-100">
                             <li class="nav-item w-50">
-                                <a class="nav-link active" href="admin.php">Usuarios</a>
+                                <a class="nav-link active" href="user.php">Enviar Arquivo</a>
                             </li>
                             <li class="nav-item w-50">
-                                <a class="nav-link" aria-current="page" href="./register.php">Registrar</a>
+                                <a class="nav-link" aria-current="page" href="./arquivos.php">Arquivos Recebidos</a>
                             </li>
                         </ul>
                         </div>
@@ -40,6 +42,46 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
             </div>
             <div class="card-body">
 
+                <form method="POST" action="../static/php/uploadFile.php" enctype="multipart/form-data">
+                    <div class="rows">
+                        <div class="row justify-content-center">
+                            <div class="col-10 h-10">
+                                <input type="file" id="file" name="files[]" multiple class="form-control" aria-label="file" required>
+                                <span>*Maximo 100MB</span>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-10">
+                                <div class="input-group mb-3">
+                                    <select class="form-select" id="recipient" name="recipient" required>
+                                        <option value="">Destinatário</option>
+                                        <?php
+                                            $sql = "SELECT id, nome FROM users ORDER BY lvl ASC";
+                                            $result = $conn->query($sql);
+
+                                            if ($result->num_rows > 0) {
+
+                                                while ($row = $result->fetch_assoc()) {
+                                                    echo "<option value='{$row['id']}'>";
+                                                    echo "{$row['nome']}";
+                                                    echo "</option>";
+                                                }
+
+                                            } else {
+                                                echo "<option>Nenhum usuário<option>";
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-10">
+                                <button id="send-button" type="submit" class="btn btn-outline-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
 
             </div>
             <div class="card-footer border-0">

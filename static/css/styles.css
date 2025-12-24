@@ -59,16 +59,16 @@ body {
     font-size: 1.2rem;
     height: 50px;
 }
-#login-button {
+#login-button, #send-button {
     width: 100%;
     font-size: 1.3rem;
 }
 
-#login-button, #showPassword {
+#login-button, #showPassword, #send-button {
     color: #20C997;
     border: 1px solid #20C997;
 }
-#login-button:hover, #showPassword:hover {
+#login-button:hover, #showPassword:hover, #send-button:hover {
     color: #fff;
     border-color: #20C997;
     background-color: #20C997;

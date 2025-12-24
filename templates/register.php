@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
-    header('Location: ../../templates/index.html');
+    header('Location: /Aegis/templates/index.html');
     exit();
 }
 ?>
@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
             </div>
             <div class="card-body">
 
-                <form method="POST" action="../static/php/register.php">
+                <form method="POST" action="/Aegis/static/php/register.php">
                     <div class="rows">
                         <div class="row justify-content-center">
                             <div class="col-10 h-10">

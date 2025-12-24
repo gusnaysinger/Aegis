@@ -12,3 +12,20 @@ toggleButton.addEventListener('click', () => {
     icon.classList.toggle('fa-eye', !isPassword);
     icon.classList.toggle('fa-eye-slash', isPassword);
 });
+
+function deletUser(id) {
+    if (!confirm("Tem certeza que deseja excluir?")) return;
+
+    fetch("/Aegis/static/php/deletUser.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id=" + id
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+        location.reload();
+    });
+}
