@@ -34,6 +34,7 @@ Aegis is built using a simple and reliable technology stack focused on performan
 
 * **PHP** – Core server-side logic, authentication, session handling, and file management
 * **MySQL / MariaDB** – Storage for user accounts, permissions, and file metadata
+* **Python** – Zip files
 
 ### Frontend
 
