@@ -29,3 +29,6 @@ function deletUser(id) {
         location.reload();
     });
 }
+function logout() {
+    window.location.replace("/Aegis/static/php/logout.php");
+}

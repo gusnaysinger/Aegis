@@ -33,7 +33,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
                                 <a class="nav-link active" href="user.php">Enviar Arquivo</a>
                             </li>
                             <li class="nav-item w-50">
+                                <a class="nav-link" aria-current="page" href="./enviados.php">Arquivos Enviado</a>
+                            </li>
+                            <li class="nav-item w-50">
                                 <a class="nav-link" aria-current="page" href="./arquivos.php">Arquivos Recebidos</a>
+                            </li>
+                            <li class="nav-item w-15">
+                                <button class="btn btn-sm btn-outline-danger mt-2"onclick="logout()">
+                                    <i class='fas fa-sign-out-alt'></i>
+                                </button>
                             </li>
                         </ul>
                         </div>
@@ -90,7 +98,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
         </div>
     </div>
 
-
+    <script src="https://kit.fontawesome.com/0635eb955e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="../static/js/script.js"></script>
 </body>

@@ -59,6 +59,9 @@ body {
     font-size: 1.2rem;
     height: 50px;
 }
+nav div ul li:last-child:hover {
+    background-color: transparent;
+}
 #login-button, #send-button {
     width: 100%;
     font-size: 1.3rem;

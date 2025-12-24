@@ -33,10 +33,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
                                 <a class="nav-link" href="user.php">Enviar Arquivo</a>
                             </li>
                             <li class="nav-item w-50">
-                                <a class="nav-link" aria-current="page" href="./enviados.php">Arquivos Enviado</a>
+                                <a class="nav-link active" aria-current="page" href="./enviados.php">Arquivos Enviado</a>
                             </li>
                             <li class="nav-item w-50">
-                                <a class="nav-link active" aria-current="page" href="./arquivos.php">Arquivos Recebidos</a>
+                                <a class="nav-link" aria-current="page" href="./arquivos.php">Arquivos Recebidos</a>
                             </li>
                             <li class="nav-item w-15">
                                 <button class="btn btn-sm btn-outline-danger mt-2"onclick="logout()">
@@ -58,10 +58,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
                         f.id,
                         f.original_name,
                         f.created_at,
-                        u.nome AS sender_name
+                        u.nome AS recipient_name
                     FROM files f
-                    INNER JOIN users u ON u.id = f.sender_id
-                    WHERE f.recipient_id = ?
+                    INNER JOIN users u ON u.id = f.recipient_id
+                    WHERE f.sender_id = ?
                     ORDER BY f.created_at DESC
                 ";
 
@@ -75,9 +75,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
                         <thead class="table-light">
                             <tr>
                                 <th>Arquivo</th>
-                                <th>Enviado por</th>
+                                <th>Enviado para</th>
                                 <th>Data</th>
-                                <th class="text-center">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,20 +92,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
                                     <tr>
                                         <td><?= htmlspecialchars($row['original_name']) ?></td>
 
-                                        <td><?= htmlspecialchars($row['sender_name']) ?></td>
+                                        <td><?= htmlspecialchars($row['recipient_name']) ?></td>
 
                                         <td>
                                             <?= date('d/m/Y H:i', strtotime($row['created_at'])) ?>
-                                        </td>
-
-                                        <td class="text-center">
-                                            <a 
-                                                href="/Aegis/static/php/download.php?id=<?= (int)$row['id'] ?>"
-                                                class="btn btn-success btn-sm"
-                                                title="Download"
-                                            >
-                                                <i class="fas fa-download"></i>
-                                            </a>
                                         </td>
                                     </tr>
                                 <?php endwhile; ?>

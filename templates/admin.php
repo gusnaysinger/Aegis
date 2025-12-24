@@ -35,6 +35,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
                             <li class="nav-item w-50">
                                 <a class="nav-link" aria-current="page" href="./register.php">Registrar</a>
                             </li>
+                            <li class="nav-item w-15">
+                                <button class="btn btn-sm btn-outline-danger mt-2"onclick="logout()">
+                                    <i class='fas fa-sign-out-alt'></i>
+                                </button>
+                            </li>
                         </ul>
                         </div>
                     </div>
