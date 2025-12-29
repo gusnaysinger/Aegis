@@ -76,3 +76,6 @@ nav div ul li:last-child:hover {
     border-color: #20C997;
     background-color: #20C997;
 }
+.active {
+    font-weight: 600;
+}

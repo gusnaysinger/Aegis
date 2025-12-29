@@ -1,6 +1,7 @@
 const passwordInput = document.getElementById('password');
 const toggleButton = document.getElementById('showPassword');
 const icon = toggleButton.querySelector('i');
+const alert = document.getElementById('uploadAlert');
 
 toggleButton.addEventListener('click', () => {
     const isPassword = passwordInput.type === 'password';

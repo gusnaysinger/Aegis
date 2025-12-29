@@ -2,7 +2,7 @@
 session_start();
 require_once 'connection.php';
 
-//SEGURANÇA
+//garante segurança para que nao seja possivel baixar arquivos de outro user
 if (!isset($_SESSION['user_id'])) {
     http_response_code(403);
     exit('Acesso negado');
@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit('Requisição inválida');
 }
 
-//DESTINATÁRIO
 if (empty($_POST['recipient'])) {
     exit('Destinatário inválido');
 }
@@ -22,7 +21,7 @@ if ($recipient <= 0) {
     exit('Destinatário inválido');
 }
 
-//CONFIGURAÇÕES
+//limita a 100mb
 $MAX_SIZE = 100 * 1024 * 1024;
 
 $tempBase  = __DIR__ . '/../../temp/';
@@ -31,18 +30,16 @@ $finalDir  = __DIR__ . '/../../uploads/';
 @mkdir($tempBase, 0755, true);
 @mkdir($finalDir, 0755, true);
 
-//VALIDA FILES
 if (!isset($_FILES['files']) || empty($_FILES['files']['name'][0])) {
     exit('Nenhum arquivo enviado');
 }
 
-//PASTA TEMP DO LOTE
 $batchDir = $tempBase . uniqid('batch_', true) . '/';
 mkdir($batchDir, 0755, true);
 
 $originalNames = [];
 
-//MOVE ARQUIVOS
+//move arquivos
 foreach ($_FILES['files']['name'] as $i => $name) {
 
     if ($_FILES['files']['error'][$i] !== UPLOAD_ERR_OK) {
@@ -61,13 +58,12 @@ foreach ($_FILES['files']['name'] as $i => $name) {
     }
 }
 
-//VERIFICA
 if (empty($originalNames)) {
     rmdir($batchDir);
     exit('Nenhum arquivo válido para upload');
 }
 
-//COMPACTAÇÃO PYTHON
+//envia arquivos para o python compactar em um zip
 $finalName = uniqid('file_', true) . '.zip';
 $finalPath = $finalDir . $finalName;
 
@@ -85,13 +81,13 @@ if ($returnCode !== 0 || !file_exists($finalPath)) {
     exit('Erro ao compactar arquivos');
 }
 
-//LIMPA TEMP
+//limpa pasta temp
 foreach (glob($batchDir . '*') as $file) {
     unlink($file);
 }
 rmdir($batchDir);
 
-//BANCO DE DADOS
+//envia informaçoes para o db
 $displayName = count($originalNames) === 1
     ? $originalNames[0]
     : 'Pacote (' . count($originalNames) . ' arquivos)';
@@ -110,6 +106,6 @@ $stmt->bind_param(
 
 $stmt->execute();
 
-//REDIRECIONA
+//retorna para pagina do usuario
 header('Location: /Aegis/templates/user.php');
 exit;

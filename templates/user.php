@@ -50,7 +50,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
             </div>
             <div class="card-body">
 
-                <form method="POST" action="../static/php/uploadFile.php" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data" action="../static/php/uploadFile.php">
                     <div class="rows">
                         <div class="row justify-content-center">
                             <div class="col-10 h-10">
