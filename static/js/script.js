@@ -2,6 +2,7 @@ const passwordInput = document.getElementById('password');
 const toggleButton = document.getElementById('showPassword');
 const icon = toggleButton.querySelector('i');
 const alert = document.getElementById('uploadAlert');
+const registerLink = document.getElementById('register-link');
 
 toggleButton.addEventListener('click', () => {
     const isPassword = passwordInput.type === 'password';
@@ -13,6 +14,10 @@ toggleButton.addEventListener('click', () => {
     icon.classList.toggle('fa-eye', !isPassword);
     icon.classList.toggle('fa-eye-slash', isPassword);
 });
+
+registerLink.addEventListener('hover', () =>
+    registerLink.innerText = "Registrar-se"
+)
 
 function deletUser(id) {
     if (!confirm("Tem certeza que deseja excluir?")) return;

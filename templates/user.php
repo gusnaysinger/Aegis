@@ -22,6 +22,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
     <div class="container vh-100 d-flex justify-content-center align-items-center">
         <div class="card w-80 w-sm-75 w-md-50 w-lg-25 text-center">
             <div class="card-header">
+                <img src="../static/image/Icon2.png" alt="Aegis" id="icon">
                 <h2>Aegis</h2>
                 <br>
                 <!-- <p>Sistema Privado de Compartilhamento de Arquivos</p> -->
