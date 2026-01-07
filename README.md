@@ -95,3 +95,102 @@ Security is a core principle of Aegis and is addressed at multiple layers of the
 ## Purpose
 
 Aegis was created to provide a secure, reliable, and controlled internal file-sharing solution. It is ideal for environments where data privacy, internal control, and system ownership are critical requirements.
+
+---
+
+## Database Setup
+
+Aegis requires a MySQL or MariaDB database to store user accounts and file metadata.
+Follow the steps below to create and configure the database manually.
+
+1. Create the Database
+
+Create a new database named aegis:
+
+```
+CREATE DATABASE aegis CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE aegis;
+```
+
+2. Create the users Table
+
+This table stores user authentication data.
+
+```
+CREATE TABLE users (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    lvl INT(11) NOT NULL,
+    PRIMARY KEY (id)
+);
+```
+
+Field description:
+
+id – Unique user identifier
+
+nome – Username
+
+senha – Hashed password (password_hash)
+
+lvl – Permission or access level
+
+3. Create the files Table
+
+This table stores file metadata and access relationships.
+
+```
+CREATE TABLE files (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    filename VARCHAR(255) DEFAULT NULL,
+    original_name VARCHAR(255) DEFAULT NULL,
+    sender_id INT(11) DEFAULT NULL,
+    recipient_id INT(11) DEFAULT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+```
+
+Field description:
+
+id – Unique file identifier
+
+filename – Stored file name on the server (randomized)
+
+original_name – Original uploaded file name
+
+sender_id – User ID who uploaded the file
+
+recipient_id – User ID allowed to access the file
+
+created_at – Upload timestamp
+
+4. Database Connection
+
+Make sure the database credentials are correctly configured in your PHP connection file (e.g. connection.php):
+
+```
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "aegis";
+
+$conn = mysqli_connect($host, $user, $password, $database);
+
+if (!$conn) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+```
+
+5. Initial User Creation
+
+Passwords must always be stored hashed.
+Example using PHP:
+
+```
+$hashedPassword = password_hash("your_password", PASSWORD_DEFAULT);
+```
+
+
+Insert the user into the database using prepared statements.
