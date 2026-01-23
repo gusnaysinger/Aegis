@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,7 +107,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 0) {
 
                 </div>
             <div class="card-footer border-0">
-                <span>Sistema desenvolvido por Sd Naysinger - 2025</span>
             </div>
         </div>
     </div>

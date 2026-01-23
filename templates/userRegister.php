@@ -1,12 +1,3 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
-    header('Location: /Aegis/templates/index.html');
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -14,7 +5,6 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link type="text/css" rel="stylesheet" href="../static/css/styles.css">
-    <link rel="icon" type="image/x-icon" href="../static/image/Icon2.png">
     <title>Aegis - Sistema Privado de Compartilhamento de Arquivos</title>
 </head>
 <body>
@@ -23,31 +13,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
             <div class="card-header">
                 <img src="../static/image/Icon2.png" alt="Aegis" id="icon">
                 <h2>Aegis</h2>
-                <br>
-                <!-- <p>Sistema Privado de Compartilhamento de Arquivos</p> -->
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <div class="container-fluid">
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav w-100">
-                            <li class="nav-item w-50">
-                                <a class="nav-link" href="admin.php">Usuarios</a>
-                            </li>
-                            <li class="nav-item w-50">
-                                <a class="nav-link active" aria-current="page" href="./register.php">Registrar</a>
-                            </li>
-                            <li class="nav-item w-15">
-                                <button class="btn btn-sm btn-outline-danger mt-2"onclick="logout()">
-                                    <i class='fas fa-sign-out-alt'></i>
-                                </button>
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-                </nav>
+                <hr>
+                <p class="subtitle">Sistema Privado de Compartilhamento de Arquivos</p>
             </div>
             <div class="card-body">
-
-                <form method="POST" action="/Aegis/static/php/register.php">
+                <form method="POST" action="../static/php/userRegister.php">
                     <div class="rows">
                         <div class="row justify-content-center">
                             <div class="col-10 h-10">
@@ -55,37 +25,57 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
                             </div>
                         </div>
                         <div class="row justify-content-center">
+                            <div class="col-10 h-10">
+                                <input type="text" id="cpf" name="cpf" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" maxLength="14" class="form-control" placeholder="CPF" aria-label="User" required>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
                             <div class="col-10">
                                 <div class="input-group mb-3">
-                                    <input type="Password" id="password" name="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="showPassword">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="showPassword">
                                     <button class="btn btn-outline-secondary" type="button" id="showPassword"><i class='fas fa-eye'></i></button>
                                 </div>
                             </div>
                         </div>
                         <div class="row justify-content-center">
-                            <div class="col-10">
-                                <select class="form-select" id="userLevel" name="level">
-                                    <option selected value="0">Usuario</option>
-                                    <option value="1">Admin</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-10">
+                            <div class="col-10 mb-2">
                                 <button id="login-button" type="submit" class="btn btn-outline-primary">Registrar</button>
                             </div>
                         </div>
                     </div>
                 </form>
-
             </div>
             <div class="card-footer border-0">
             </div>
         </div>
     </div>
 
+
     <script src="https://kit.fontawesome.com/0635eb955e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/script.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('error') === 'duplicate') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Cadastro inválido',
+                theme: 'bootstrap-5-dark',
+                text: 'Nome de usuário ou CPF já estão em uso.'
+            });
+        }
+
+        if (params.get('error') === 'server') {
+            Swal.fire({
+                icon: "error",
+                theme: "bootstrap-5-dark",
+                title: 'Erro',
+                text: 'Erro interno. Tente novamente mais tarde.'
+            });
+        }
+    </script>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,15 +36,14 @@
                             <div class="col-10 mb-2">
                                 <button id="login-button" type="submit" class="btn btn-outline-primary">Login</button>
                             </div>
-                            <!-- <div class="col-10">
-                                <button id="register-link" type="button" class="btn btn-outline-primary">Não tem conta?</button>
-                            </div> -->
+                            <div class="col-10">
+                                <a href="userRegister.php" id="register-link" type="button" class="btn btn-outline-primary" onmouseover="this.innerHTML='Criar Conta'" onmouseout="this.innerHTML='Não Tem Conta?'">Não Tem Conta?</a>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="card-footer border-0">
-                <span>Sistema desenvolvido por Sd Naysinger - 2025</span>
             </div>
         </div>
     </div>
@@ -52,6 +51,18 @@
 
     <script src="https://kit.fontawesome.com/0635eb955e.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../static/js/script.js"></script>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get('registered')) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Conta criada!',
+                text: 'Agora você pode fazer login.'
+            });
+        }
+    </script>
 </body>
 </html>

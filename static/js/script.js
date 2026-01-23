@@ -15,9 +15,15 @@ toggleButton.addEventListener('click', () => {
     icon.classList.toggle('fa-eye-slash', isPassword);
 });
 
-registerLink.addEventListener('hover', () =>
-    registerLink.innerText = "Registrar-se"
-)
+document.getElementById('cpf').addEventListener('input', function (e) {
+    var valor = e.target.value;
+    valor = valor.replace(/\D/g, ""); // Remove tudo o que não é dígito
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca o primeiro ponto após o terceiro dígito
+    valor = valor.replace(/(\d{3})(\d)/, "$1.$2"); // Coloca o segundo ponto após o sexto dígito
+    valor = valor.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Coloca o traço após o nono dígito
+
+    e.target.value = valor; // Atualiza o valor do input com a máscara
+});
 
 function deletUser(id) {
     if (!confirm("Tem certeza que deseja excluir?")) return;
