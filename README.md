@@ -7,7 +7,8 @@
 The system is self-hosted and intended for organizations or teams that require internal file sharing without relying on external cloud services. Aegis ensures that all data remains within the local infrastructure, reducing exposure to external threats.
 
 **Demonstration**
-(static/image/ApresentaoAegis.gif)
+
+![demontration gif](https://github.com/gusnaysinger/Aegis/blob/main/static/image/ApresentaoAegis.gif)
 
 ---
 
