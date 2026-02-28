@@ -69,27 +69,27 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
                                 echo "<tr>";
                                 echo "<th scope='row'>{$row['id']}</th>";
                                 echo "<td>{$row['nome']}</td>";
-
+                                
                                 // Tipo de usuário
                                 if ($row['lvl'] == 1) {
                                     echo "<td><span class='badge bg-danger'>Admin</span></td>";
-                                } else {
+                                    } else {
                                     echo "<td><span class='badge bg-secondary'>Usuário</span></td>";
-                                }
-
-                                // Ações
-                                // <button class='btn btn-sm btn-warning'
-                                // onclick='getUser({$row['id']})'>
-                                // <i class='fas fa-pen'></i>
-                                // </button>
-                                echo "<td>
+                                    }
+                                    
+                                    // Ações
+                                    // <button class='btn btn-sm btn-warning'
+                                    // onclick='getUser({$row['id']})'>
+                                    // <i class='fas fa-pen'></i>
+                                    // </button>
+                                    echo "<td>
                                     <button class='btn btn-sm btn-danger'
-                                            onclick='deletUser({$row['id']})'>
-                                        <i class='fas fa-trash-can'></i>
+                                    onclick='deletUser({$row['id']})'>
+                                    <i class='fas fa-trash-can'></i>
                                     </button>
-                                </td>";
-
-                                echo "</tr>";
+                                    </td>";
+                                    
+                                    echo "</tr>";
                             }
 
                         } else {

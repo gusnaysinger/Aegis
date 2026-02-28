@@ -94,6 +94,7 @@ hr {
 }
 .col-10 input, #userLevel{
     font-size: 1.2rem;
+    border: 2px solid #0000002c;
     height: 50px;
 }
 nav div ul li:last-child:hover {

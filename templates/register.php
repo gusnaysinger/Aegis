@@ -55,6 +55,11 @@ if (!isset($_SESSION['user_id']) || $_SESSION['lvl'] != 1) {
                             </div>
                         </div>
                         <div class="row justify-content-center">
+                            <div class="col-10 h-10">
+                                <input type="text" id="cpf" name="cpf" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" maxLength="14" class="form-control" placeholder="CPF" aria-label="User" required>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
                             <div class="col-10">
                                 <div class="input-group mb-3">
                                     <input type="Password" id="password" name="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="showPassword">
